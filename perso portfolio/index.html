@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sourav Jena | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-pV0pJP1eE0v8Ppbb9M1CrX5AAj4HhfHxvEzf5pXsk5J9GCxRUpn2UVGFxfRZ+zqN5p9V+N7pBFf3vZuUs/jZBQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+  #formMessage {
+    margin-top: 15px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    animation: fadeIn 0.4s ease-in-out;
+  }
+
+  #formMessage.success {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+  }
+
+  #formMessage.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+  }
+
+  #contactForm button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">Sourav Jena</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Hello, I'm <span class="highlight">Sourav Jena</span></h1>
+    <p>A passionate Web Developer & Designer</p>
+    <button onclick="scrollToSection('projects')">View My Work</button>
+  </section>
+
+  <section id="about" class="section">
+    <h2>About Me</h2>
+    <p>I am a dedicated web developer focused on building responsive and interactive web applications. I enjoy solving real-world problems through coding and continuously expanding my technical knowledge. Skilled in programming languages such as Python, Java, and C++, I am also familiar with database systems and networking concepts. I am currently seeking opportunities to apply my skills in a practical environment, grow professionally, and contribute to innovative tech solutions</p>
+  </section>
+
+  <section id="skills" class="section">
+    <h2>Skills</h2>
+    <ul class="skills-list">
+      <li>HTML5</li>
+      <li>CSS3</li>
+      <li>JavaScript</li>
+      <li>React</li>
+      <li>Node.js</li>
+      <li>Git & GitHub</li>
+    </ul>
+  </section>
+
+  <section id="projects" class="section">
+    <h2>Projects</h2>
+    <div class="projects-container">
+      <div class="project-card">
+        <h3>Netflix Clone (Frontend)</h3>
+        <p>A responsive UI-only Netflix clone using HTML, CSS, and JS.</p>
+        <button>View Project</button>
+      </div>
+      <div class="project-card">
+        <h3>Task Manager App</h3>
+        <p>A full-stack task manager built using MERN stack.</p>
+        <button>Upload Project</button>
+      </div>
+      <div class="project-card">
+        <h3>Weather App</h3>
+        <p>Weather forecasting app using public APIs and modern UI design.</p>
+        <button>Upload Project</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Contact Me</h2>
+    <form id="contactForm" action="https://formspree.io/f/mnqeyapq" method="POST">
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <textarea name="message" placeholder="Your Message" required></textarea>
+  <button type="submit">Send Message</button>
+</form>
+<script>
+  const form = document.getElementById('contactForm');
+  const formMessage = document.getElementById('formMessage');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    formMessage.className = '';
+    formMessage.textContent = 'Sending...';
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        formMessage.textContent = 'Thanks for reaching out! I will get back to you soon.';
+        formMessage.className = 'success';
+        form.reset();
+      } else {
+        formMessage.textContent = 'Oops! There was a problem submitting your form.';
+        formMessage.className = 'error';
+      }
+    } catch (error) {
+      formMessage.textContent = 'Network error. Please try again later.';
+      formMessage.className = 'error';
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+    <div id="formMessage"></div>
+
+    <div class="social-links">
+  <h3>Connect with me:</h3>
+  <a href="https://github.com/" target="_blank" aria-label="GitHub">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="30" height="30">
+    <span>GitHub</span>
+  </a>
+  <a href="https://linkedin.com/in/souravjena" target="_blank" aria-label="LinkedIn">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" width="30" height="30">
+    <span>LinkedIn</span>
+  </a>
+  <a href="https://x.com/home" target="_blank" aria-label="Twitter">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" width="30" height="30">
+    <span>Twitter</span>
+  </a>
+  <a href="" target="_blank" aria-label="Instagram">
+    <img src="https://www.instagram.com/_cypab_/" alt="Instagram" width="30" height="30">
+    <span>Instagram</span>
+  </a>
+</div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Sourav Jena. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
